@@ -2,6 +2,7 @@
 	"author": "Alex Kahn",
 	"description": "A state management library for Elysia, scoped to individual users.",
 	"devDependencies": {
+		"@absolutejs/absolute": "^0.19.0-beta.1051",
 		"@elysiajs/static": "1.2.0",
 		"@stylistic/eslint-plugin-ts": "4.2.0",
 		"@types/bun": "latest",
@@ -24,6 +25,7 @@
 	},
 	"scripts": {
 		"build": "rm -rf dist && bun build src/index.ts --outdir dist --target=bun --external elysia && tsc --emitDeclarationOnly --project tsconfig.json",
+		"config": "absolute config",
 		"dev": "bun run --watch example/server.ts",
 		"format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,json,mjs,md,html}\"",
 		"lint": "eslint ./",
