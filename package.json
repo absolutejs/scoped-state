@@ -18,10 +18,10 @@
 	},
 	"license": "MIT",
 	"main": "./dist/index.js",
-	"name": "elysia-scoped-state",
+	"name": "@absolutejs/scoped-state",
 	"repository": {
 		"type": "git",
-		"url": "https://github.com/alexkahndev/scoped-state.git"
+		"url": "https://github.com/absolutejs/scoped-state.git"
 	},
 	"scripts": {
 		"build": "rm -rf dist && bun build src/index.ts --outdir dist --target=bun --external elysia && tsc --emitDeclarationOnly --project tsconfig.json",
