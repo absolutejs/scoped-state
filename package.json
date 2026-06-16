@@ -30,6 +30,7 @@
 	"bugs": {
 		"url": "https://github.com/absolutejs/scoped-state/issues"
 	},
+	"files": ["dist", "README.md"],
 	"scripts": {
 		"build": "rm -rf dist && bun build src/index.ts --outdir dist --target=bun --external elysia && tsc --emitDeclarationOnly --project tsconfig.json",
 		"config": "absolute config",
