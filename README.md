@@ -67,4 +67,4 @@ export const server = new Elysia()
 
 ## License
 
-Creative Commons **CC BY-NC 4.0** – see [`LICENSE`](./LICENSE) for details.
+MIT – see [`LICENSE`](./LICENSE) for details.
