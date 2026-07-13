@@ -1,12 +1,17 @@
 {
 	"absolutejs": {
 		"manifestContract": 1
-	}, "author": "Alex Kahn", "bugs": {
+	},
+	"author": "Alex Kahn",
+	"bugs": {
 		"url": "https://github.com/absolutejs/scoped-state/issues"
-	}, "dependencies": {
+	},
+	"dependencies": {
 		"@absolutejs/manifest": "^0.1.0",
 		"@sinclair/typebox": "^0.34.0"
-	}, "description": "A state management library for Elysia, scoped to individual users.", "devDependencies": {
+	},
+	"description": "A state management library for Elysia, scoped to individual users.",
+	"devDependencies": {
 		"@absolutejs/absolute": "^0.19.0-beta.1051",
 		"@elysiajs/static": "1.2.0",
 		"@stylistic/eslint-plugin-ts": "4.2.0",
@@ -20,23 +25,36 @@
 		"prettier": "3.5.3",
 		"typescript": "5.8.3",
 		"typescript-eslint": "8.32.0"
-	}, "exports": {
+	},
+	"exports": {
 		".": {
-			"default": "./dist/index.js", "import": "./dist/index.js", "types": "./dist/src/index.d.ts"
+			"default": "./dist/index.js",
+			"import": "./dist/index.js",
+			"types": "./dist/src/index.d.ts"
 		},
 		"./manifest": {
-			"default": "./dist/manifest.js", "import": "./dist/manifest.js", "types": "./dist/src/manifest.d.ts"
+			"default": "./dist/manifest.js",
+			"import": "./dist/manifest.js",
+			"types": "./dist/src/manifest.d.ts"
 		},
 		"./manifest.json": "./dist/manifest.json"
-	}, "files": [
+	},
+	"files": [
 		"dist",
 		"README.md"
-	], "homepage": "https://github.com/absolutejs/scoped-state", "license": "MIT", "main": "./dist/index.js", "name": "@absolutejs/scoped-state", "publishConfig": {
+	],
+	"homepage": "https://github.com/absolutejs/scoped-state",
+	"license": "MIT",
+	"main": "./dist/index.js",
+	"name": "@absolutejs/scoped-state",
+	"publishConfig": {
 		"access": "public"
-	}, "repository": {
+	},
+	"repository": {
 		"type": "git",
 		"url": "https://github.com/absolutejs/scoped-state.git"
-	}, "scripts": {
+	},
+	"scripts": {
 		"build": "rm -rf dist && bun build src/index.ts src/manifest.ts --outdir dist --root ./src --target=bun --external elysia && tsc --emitDeclarationOnly --project tsconfig.json && absolute-manifest emit",
 		"config": "absolute config",
 		"dev": "bun run --watch example/server.ts",
@@ -45,5 +63,7 @@
 		"release": "bun run format && bun run build && bun publish",
 		"test": "echo \"Error: no test specified\" && exit 1",
 		"typecheck": "bun run tsc --noEmit"
-	}, "types": "./dist/src/index.d.ts", "version": "0.1.2"
+	},
+	"types": "./dist/src/index.d.ts",
+	"version": "0.1.3"
 }
