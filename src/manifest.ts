@@ -9,7 +9,7 @@ import type { ScopedStateConfig } from './types';
 export const manifest = defineManifest<
 	Record<string, ScopedStateConfig<unknown>>
 >()({
-	contract: 1,
+	contract: 2,
 	identity: {
 		accent: '#14b8a6',
 		category: 'infrastructure',
