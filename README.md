@@ -1,4 +1,4 @@
-# elysia-scoped-state
+# @absolutejs/scoped-state
 
 ## Elysia Scoped State is a plugin that provides per-user-session server-side state management in Elysia, letting you store and retrieve data tied to individual users. It’s especially useful for powering stateful HTMX interactions, but can be used for any server-side data you need to persist across requests.
 
@@ -6,16 +6,16 @@
 
 ```bash
 # Bun
-bun add elysia-scoped-state
+bun add @absolutejs/scoped-state
 
 # npm
-npm install elysia-scoped-state
+npm install @absolutejs/scoped-state
 
 # pnpm
-pnpm add elysia-scoped-state
+pnpm add @absolutejs/scoped-state
 
 # Yarn
-yarn add elysia-scoped-state
+yarn add @absolutejs/scoped-state
 ```
 
 ---
@@ -41,7 +41,7 @@ yarn add elysia-scoped-state
 
 ```ts
 import { Elysia } from 'elysia';
-import { scopedState } from 'elysia-scoped-state';
+import { scopedState } from '@absolutejs/scoped-state';
 
 export const server = new Elysia()
 	.use(
