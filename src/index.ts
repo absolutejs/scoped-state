@@ -29,19 +29,22 @@ export const scopedState = <
 				// already created its own object yet. Reads from a
 				// freshly-cookied user return whatever the previous
 				// active session last wrote.
-				if (user_session_id.value === undefined) {
-					user_session_id.value = crypto.randomUUID();
+				const cookieValue = user_session_id.value;
+				let sessionId: string;
+				if (typeof cookieValue !== 'string') {
+					sessionId = crypto.randomUUID();
+					user_session_id.value = sessionId;
 					// @ts-expect-error - Object.entries loses type inference because of the `unknown` type
-					scoped[user_session_id.value] = structuredClone(initialState);
-				}
+					scoped[sessionId] = structuredClone(initialState);
+				} else sessionId = cookieValue;
 
 				// The server got reset but the user session cookie still exists, so we reset the scoped state
-				if (scoped[user_session_id.value] === undefined) {
+				if (scoped[sessionId] === undefined) {
 					// @ts-expect-error - Object.entries loses type inference because of the `unknown` type
-					scoped[user_session_id.value] = structuredClone(initialState);
+					scoped[sessionId] = structuredClone(initialState);
 				}
 
-				const scopedStore = scoped[user_session_id.value];
+				const scopedStore = scoped[sessionId];
 
 				if (scopedStore === undefined)
 					return status(
