@@ -1,4 +1,4 @@
-import { Elysia } from 'elysia';
+import { Elysia, t } from 'elysia';
 import { Prettify } from 'elysia/types';
 import { ScopedRecord, ScopedStateConfig, ValueOnly } from './types';
 
@@ -17,6 +17,12 @@ export const scopedState = <
 
 	return new Elysia({ name: 'scoped-state' })
 		.state({ scoped: initialRecord })
+		.guard({
+			cookie: t.Cookie({
+				absolute_scoped_state_id: t.Optional(t.String())
+			}),
+			schema: 'merge'
+		})
 		.derive(
 			({
 				store: { scoped },

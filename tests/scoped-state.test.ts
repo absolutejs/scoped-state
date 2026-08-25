@@ -1,5 +1,5 @@
 import { describe, expect, test } from 'bun:test';
-import { Elysia } from 'elysia';
+import { Elysia, t } from 'elysia';
 import { SCOPED_STATE_COOKIE_NAME, scopedState } from '../src';
 
 const AUTH_COOKIE_NAME = 'user_session_id';
@@ -7,6 +7,13 @@ const AUTH_SESSION_ID = 'auth-session-that-must-not-be-reused';
 
 const createApp = () =>
 	new Elysia()
+		.guard({
+			cookie: t.Cookie({
+				user_session_id: t.Optional(t.String())
+			}),
+			schema: 'merge'
+		})
+		.as('global')
 		.use(scopedState({ count: { value: 0 } }))
 		.get('/count', ({ scopedStore }) => scopedStore.count)
 		.post('/increment', ({ scopedStore }) => ++scopedStore.count);
