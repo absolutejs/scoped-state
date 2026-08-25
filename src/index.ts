@@ -2,6 +2,8 @@ import { Elysia } from 'elysia';
 import { Prettify } from 'elysia/types';
 import { ScopedRecord, ScopedStateConfig, ValueOnly } from './types';
 
+export const SCOPED_STATE_COOKIE_NAME = 'absolute_scoped_state_id';
+
 export const scopedState = <
 	Setup extends Record<string, ScopedStateConfig<unknown>>
 >(
@@ -16,8 +18,12 @@ export const scopedState = <
 	return new Elysia({ name: 'scoped-state' })
 		.state({ scoped: initialRecord })
 		.derive(
-			({ store: { scoped }, cookie: { user_session_id }, status }) => {
-				if (user_session_id === undefined) {
+			({
+				store: { scoped },
+				cookie: { absolute_scoped_state_id },
+				status
+			}) => {
+				if (absolute_scoped_state_id === undefined) {
 					return status('Bad Request', 'Cookies not set properly');
 				}
 
@@ -29,11 +35,11 @@ export const scopedState = <
 				// already created its own object yet. Reads from a
 				// freshly-cookied user return whatever the previous
 				// active session last wrote.
-				const cookieValue = user_session_id.value;
+				const cookieValue = absolute_scoped_state_id.value;
 				let sessionId: string;
 				if (typeof cookieValue !== 'string') {
 					sessionId = crypto.randomUUID();
-					user_session_id.value = sessionId;
+					absolute_scoped_state_id.value = sessionId;
 					// @ts-expect-error - Object.entries loses type inference because of the `unknown` type
 					scoped[sessionId] = structuredClone(initialState);
 				} else sessionId = cookieValue;

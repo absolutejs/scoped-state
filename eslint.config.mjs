@@ -177,6 +177,8 @@ export default [
 	{
 		files: [
 			'example/server.ts',
+			'tests/**/*.ts',
+			'tsconfig.build.json',
 			'tsconfig.json',
 			'package.json',
 			'.prettierrc.json'
@@ -186,7 +188,12 @@ export default [
 		}
 	},
 	{
-		files: ['tsconfig.json', 'package.json', '.prettierrc.json'],
+		files: [
+			'tsconfig.build.json',
+			'tsconfig.json',
+			'package.json',
+			'.prettierrc.json'
+		],
 		rules: {
 			'@typescript-eslint/no-unused-expressions': 'off'
 		}
