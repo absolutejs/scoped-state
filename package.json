@@ -13,7 +13,7 @@
 	"description": "A state management library for Elysia, scoped to individual users.",
 	"devDependencies": {
 		"@absolutejs/absolute": "^0.20.0-beta.0",
-		"@absolutejs/changelog": "^0.1.2",
+		"@absolutejs/changelog": "^0.2.0",
 		"@elysia/static": "2.0.0-beta.2",
 		"@stylistic/eslint-plugin-ts": "4.2.0",
 		"@types/bun": "latest",
@@ -71,7 +71,8 @@
 		"release": "bun run format && bun run build && bun publish",
 		"test": "bun test",
 		"typecheck": "bun run tsc --noEmit",
-		"check:package": "absolute-changelog check"
+		"check:package": "absolute-changelog check",
+		"prepublishOnly": "absolute-changelog check"
 	},
 	"types": "./dist/src/index.d.ts",
 	"version": "0.2.2"
