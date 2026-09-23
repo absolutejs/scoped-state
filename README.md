@@ -23,7 +23,7 @@ yarn add @absolutejs/scoped-state
 ## Key Features
 
 - **Per-user scoped store**  
-  Each request is mapped to its own slice of the shared `.state.scoped` object, keyed by a dedicated `absolute_scoped_state_id` cookie set automatically on first visit. It is intentionally separate from authentication cookies, so scoped state works with or without `@absolutejs/auth` and neither package can invalidate the other's session.
+  Each request receives its visitor session through the derived `scopedStore` context property, keyed by a dedicated `absolute_scoped_state_id` cookie set automatically on first visit. It is intentionally separate from authentication cookies, so scoped state works with or without `@absolutejs/auth` and neither package can invalidate the other's session.
 
 ---
 
