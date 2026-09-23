@@ -75,5 +75,5 @@
 		"prepublishOnly": "bun run check:package"
 	},
 	"types": "./dist/src/index.d.ts",
-	"version": "0.2.2"
+	"version": "0.2.3"
 }

@@ -13,7 +13,6 @@ const createApp = () =>
 			}),
 			schema: 'merge'
 		})
-		.as('global')
 		.use(scopedState({ count: { value: 0 } }))
 		.get('/count', ({ scopedStore }) => scopedStore.count)
 		.post('/increment', ({ scopedStore }) => ++scopedStore.count);
@@ -52,4 +51,34 @@ describe('scopedState', () => {
 		);
 		expect(await countResponse.text()).toBe('1');
 	});
+});
+
+test('nested reset values remain isolated between sessions', async () => {
+	const app = new Elysia()
+		.use([scopedState({ nested: { value: { count: 0 } } })])
+		.get('/', ({ scopedStore }) => scopedStore.nested.count)
+		.post('/increment', ({ scopedStore }) => ++scopedStore.nested.count)
+		.post('/reset', ({ resetScopedStore }) => {
+			resetScopedStore();
+
+			return { ok: true };
+		});
+	const first = await app.handle(new Request('http://localhost/'));
+	const second = await app.handle(new Request('http://localhost/'));
+	const cookieA = first.headers.get('set-cookie')?.split(';')[0] ?? '';
+	const cookieB = second.headers.get('set-cookie')?.split(';')[0] ?? '';
+	expect(cookieA).not.toBe(cookieB);
+	const request = (path: string, cookie: string, method = 'GET') =>
+		app.handle(
+			new Request(`http://localhost${  path}`, {
+				headers: { cookie }, method
+			})
+		);
+	await request('/increment', cookieA, 'POST');
+	expect(await (await request('/', cookieB)).text()).toBe('0');
+	await request('/reset', cookieA, 'POST');
+	await request('/reset', cookieB, 'POST');
+	await request('/increment', cookieA, 'POST');
+	expect(await (await request('/', cookieB)).text()).toBe('0');
+	expect(await (await request('/', cookieA)).text()).toBe('1');
 });
