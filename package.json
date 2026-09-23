@@ -63,17 +63,8 @@
 		"url": "https://github.com/absolutejs/scoped-state.git"
 	},
 	"scripts": {
-		"build": "rm -rf dist && bun build src/index.ts src/manifest.ts --outdir dist --root ./src --target=bun --external elysia && tsc --emitDeclarationOnly --project tsconfig.build.json && absolute-manifest emit",
-		"config": "absolute config",
-		"dev": "bun run --watch example/server.ts",
-		"format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,json,mjs,md,html}\"",
-		"lint": "eslint ./",
-		"release": "bun run format && bun run build && bun publish",
-		"test": "bun test",
-		"typecheck": "bun run tsc --noEmit",
-		"check:package": "absolute-changelog check",
-		"prepublishOnly": "bun run check:package"
+		"build": "rm -rf dist && bun build src/index.ts src/manifest.ts --outdir dist --root ./src --target=bun --external elysia && tsc --emitDeclarationOnly --project tsconfig.build.json && absolute-manifest emit", "check:package": "absolute-changelog check", "config": "absolute config", "dev": "bun run --watch example/server.ts", "format": "prettier --write \"./**/*.{js,jsx,ts,tsx,css,json,mjs,md,html}\"", "lint": "eslint ./", "prepublishOnly": "bun run check:package", "release": "bun run format && bun run build && bun publish", "test": "bun test", "typecheck": "bun run tsc --noEmit"
 	},
 	"types": "./dist/src/index.d.ts",
-	"version": "0.2.2"
+	"version": "0.3.1"
 }

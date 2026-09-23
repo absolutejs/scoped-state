@@ -14,13 +14,13 @@ export const manifest = defineManifest<
 		accent: '#14b8a6',
 		category: 'infrastructure',
 		description:
-			'Per-visitor server-side state for Elysia: each request gets its own slice of `.state.scoped`, keyed by a secure session cookie set on first visit. Ideal for stateful HTMX interactions or any server data that should persist across a visitor’s requests. `preserve` flags survive store resets.',
+			'Per-visitor server-side state for Elysia: each request receives its visitor session through `scopedStore`, keyed by a secure session cookie set on first visit. Ideal for stateful HTMX interactions or any server data that should persist across a visitor’s requests. `preserve` flags survive store resets.',
 		docsUrl: 'https://github.com/absolutejs/scoped-state',
 		name: '@absolutejs/scoped-state',
 		tagline: 'Remember things for each visitor between page loads.'
 	},
 	requires: {
-		peers: [{ name: 'elysia', range: '>=1.3', reason: 'plugin host' }]
+		peers: [{ name: 'elysia', range: '^2.0.0-beta.6', reason: 'plugin host' }]
 	},
 	settings: Type.Record(
 		Type.String(),
