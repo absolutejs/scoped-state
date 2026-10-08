@@ -15,7 +15,8 @@ import tseslint from 'typescript-eslint';
 
 export default [
 	{
-		ignores: ['dist/**']
+		// Generated release metadata is data, not a JavaScript module.
+		ignores: ['changelog.json','dist/**']
 	},
 	pluginJs.configs.recommended,
 
